@@ -10,12 +10,12 @@ function tmpMetaPath(): string {
     return path.join(os.tmpdir(), `meta-${process.pid}-${Math.round(process.hrtime()[1])}.json`);
 }
 
-test('meta: 文件不存在时返回 null', () => {
+test('meta: returns null when the file does not exist', () => {
     const p = tmpMetaPath();
     assert.equal(readIndexMeta(p), null);
 });
 
-test('meta: 写入后能原样读回，并自动带上当前 GENERATOR_VERSION', () => {
+test('meta: reads back exactly what was written, stamped with the current GENERATOR_VERSION', () => {
     const p = tmpMetaPath();
     try {
         writeIndexMeta('abc123', '2026-08-09T00:00:00.000Z', p);
@@ -29,7 +29,7 @@ test('meta: 写入后能原样读回，并自动带上当前 GENERATOR_VERSION',
     }
 });
 
-test('meta: targetCommit 允许为 null（目标不是 git 仓库）', () => {
+test('meta: targetCommit may be null (the target is not a git repository)', () => {
     const p = tmpMetaPath();
     try {
         writeIndexMeta(null, '2026-08-09T00:00:00.000Z', p);
@@ -39,7 +39,7 @@ test('meta: targetCommit 允许为 null（目标不是 git 仓库）', () => {
     }
 });
 
-test('meta: 文件损坏时返回 null 而不是抛异常', () => {
+test('meta: returns null on a corrupt file rather than throwing', () => {
     const p = tmpMetaPath();
     try {
         fs.writeFileSync(p, '{ this is not json');
@@ -49,7 +49,7 @@ test('meta: 文件损坏时返回 null 而不是抛异常', () => {
     }
 });
 
-test('meta: 缺少 generatorVersion 字段视为无效', () => {
+test('meta: a missing generatorVersion field is treated as invalid', () => {
     const p = tmpMetaPath();
     try {
         fs.writeFileSync(p, JSON.stringify({ targetCommit: 'abc' }));

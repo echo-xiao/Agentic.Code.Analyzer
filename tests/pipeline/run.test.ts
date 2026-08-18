@@ -30,7 +30,7 @@ beforeEach(() => {
 });
 
 test('runQuestion wires every stage with exactly 3 LLM calls', async () => {
-    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案：sendMessage 做了这些事']);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', 'ANSWER: sendMessage does these things']);
     const row = await runQuestion('q1', 'how is a message sent?', {
         llm, sections, deepwikiFn: async () => 'baseline', readFn,
     });
@@ -38,7 +38,7 @@ test('runQuestion wires every stage with exactly 3 LLM calls', async () => {
     assert.equal(row.deepwiki, 'baseline');
     assert.equal(row.trace.chains.length, 1);
     assert.equal(row.trace.chains[0].seed.symbol, 'sendMessage');
-    assert.ok(row.trace.readIds.length > 0 && row.answer.includes('答案'));
+    assert.ok(row.trace.readIds.length > 0 && row.answer.includes('ANSWER'));
 });
 
 test('runQuestion records pool stats, including pages whose pool scored zero', async () => {
@@ -47,7 +47,7 @@ test('runQuestion records pool stats, including pages whose pool scored zero', a
         sections[0],
         { pageId: 'api-page', heading: 'Rate Limiting', path: 'api-page › Rate Limiting', sources: ['apps/meteor/api/rest.ts'], prose: '' },
     ];
-    const llm = new FakeLlm(['msg-page › Message Sending Workflow\napi-page › Rate Limiting', '1', '答案']);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow\napi-page › Rate Limiting', '1', 'ANSWER']);
     const row = await runQuestion('q2', 'how is a message sent?', {
         llm, sections: twoSections, deepwikiFn: async () => 'b', readFn,
     });
@@ -57,7 +57,7 @@ test('runQuestion records pool stats, including pages whose pool scored zero', a
 });
 
 test('runQuestion carries the rendered skeleton in the trace for the report to show', async () => {
-    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', 'ANSWER']);
     const row = await runQuestion('q3', 'how is a message sent?', {
         llm, sections, deepwikiFn: async () => 'b', readFn,
     });
@@ -66,7 +66,7 @@ test('runQuestion carries the rendered skeleton in the trace for the report to s
 });
 
 test('runQuestion records routing.promptTokens from the first call only', async () => {
-    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', 'ANSWER']);
     const row = await runQuestion('q4', 'how is a message sent?', {
         llm, sections, deepwikiFn: async () => 'b', readFn,
     });
@@ -80,7 +80,7 @@ test('runQuestion reads every major node, chain root first', async () => {
     const sender = `${REL}#sendMessage`;
     GLOBAL_INDEX.out.set(sender, [{ from: sender, to: helper, kind: 'call' }]);
     GLOBAL_INDEX.in.set(helper, [{ from: sender, to: helper, kind: 'call' }]);
-    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', 'ANSWER']);
     const row = await runQuestion('q5', 'how is a message sent?', {
         llm, sections, deepwikiFn: async () => 'b', budgetTokens: 24000, readFn,
     });
@@ -91,7 +91,7 @@ test('runQuestion reads every major node, chain root first', async () => {
 });
 
 test('runQuestion: a zero ceiling reads nothing and records it', async () => {
-    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', 'ANSWER']);
     const row = await runQuestion('q6', 'how is a message sent?', {
         llm, sections, deepwikiFn: async () => 'b', budgetTokens: 0, readFn,
     });
@@ -100,21 +100,21 @@ test('runQuestion: a zero ceiling reads nothing and records it', async () => {
 });
 
 test('runQuestion: a deepwikiFn that throws still resolves with the run row', async () => {
-    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', 'ANSWER']);
     const row = await runQuestion('q7', 'how is a message sent?', {
         llm, sections, deepwikiFn: async () => { throw new Error('mcp down'); }, readFn,
     });
     assert.ok(row.deepwiki.includes('mcp down'));
-    assert.ok(row.answer.includes('答案'));
+    assert.ok(row.answer.includes('ANSWER'));
 });
 
 // The MCP entry omits the baseline: its per-question cache is keyed by benchmark qid and can
 // never hit for a free-form question, so keeping it would mean a live third-party request on
 // every call for a column nobody reads.
 test('runQuestion: omitting deepwikiFn skips the baseline entirely', async () => {
-    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', 'ANSWER']);
     const row = await runQuestion('q8', 'how is a message sent?', { llm, sections, readFn });
     assert.equal(row.deepwiki, '');
-    assert.ok(row.answer.includes('答案'));
+    assert.ok(row.answer.includes('ANSWER'));
     assert.equal(row.trace.llm.calls, 3);
 });

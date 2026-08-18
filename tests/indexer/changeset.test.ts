@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseNameStatus, currentCommit, isCleanWorktree } from '../../src/indexer/changeset.js';
 
-test('changeset: 解析 A / M / D 三种状态', () => {
+test('changeset: parses the A / M / D statuses', () => {
     const raw = [
         'A\tapps/meteor/server/new.ts',
         'M\tapps/meteor/server/changed.ts',
@@ -15,7 +15,7 @@ test('changeset: 解析 A / M / D 三种状态', () => {
     assert.deepEqual(cs.renamed, []);
 });
 
-test('changeset: 重命名保留成对，不拆成删除加新增', () => {
+test('changeset: a rename stays a pair, not a delete plus an add', () => {
     const raw = 'R100\tapps/meteor/app/api/server/api.ts\tapps/meteor/server/api/api.ts';
     const cs = parseNameStatus(raw);
     assert.deepEqual(cs.renamed, [{
@@ -26,7 +26,7 @@ test('changeset: 重命名保留成对，不拆成删除加新增', () => {
     assert.deepEqual(cs.added, [], 'rename must not appear as an addition');
 });
 
-test('changeset: 非源码扩展名被过滤掉', () => {
+test('changeset: non-source extensions are filtered out', () => {
     const raw = [
         'M\tpackage.json',
         'D\tREADME.md',
@@ -39,7 +39,7 @@ test('changeset: 非源码扩展名被过滤掉', () => {
     assert.deepEqual(cs.deleted, []);
 });
 
-test('changeset: 源码改名成非源码算删除，反之算新增', () => {
+test('changeset: source renamed to non-source counts as a delete, and the reverse as an add', () => {
     const raw = [
         'R090\tapps/meteor/server/a.ts\tdocs/a.md',
         'R090\tdocs/b.md\tapps/meteor/server/b.ts',
@@ -50,12 +50,12 @@ test('changeset: 源码改名成非源码算删除，反之算新增', () => {
     assert.deepEqual(cs.renamed, []);
 });
 
-test('changeset: 空输入产出空变更集', () => {
+test('changeset: empty input yields an empty changeset', () => {
     const cs = parseNameStatus('');
     assert.deepEqual(cs, { added: [], modified: [], deleted: [], renamed: [] });
 });
 
-test('changeset: 与 scanDirectory() 一致 -- .test.ts 和 .d.ts 这类改动会被滤掉，不当成索引变更', () => {
+test('changeset: matches scanDirectory() -- .test.ts and .d.ts changes are filtered out, not counted as index changes', () => {
     const raw = [
         'M\tapps/meteor/server/foo.test.ts',
         'A\tapps/meteor/server/types.d.ts',
@@ -68,16 +68,16 @@ test('changeset: 与 scanDirectory() 一致 -- .test.ts 和 .d.ts 这类改动�
     assert.deepEqual(cs.deleted, []);
 });
 
-test('changeset: 目标不是 git 仓库时 currentCommit 返回 null', () => {
+test('changeset: currentCommit returns null when the target is not a git repository', () => {
     assert.equal(currentCommit('/tmp'), null);
 });
 
-test('changeset: Rocket.Chat 的 HEAD 是 40 位 sha', () => {
+test('changeset: Rocket.Chat HEAD is a 40-character sha', () => {
     const sha = currentCommit();
     assert.ok(sha, 'target repo should resolve HEAD');
     assert.match(sha!, /^[0-9a-f]{40}$/);
 });
 
-test('changeset: Rocket.Chat 工作区是干净的', () => {
+test('changeset: the Rocket.Chat worktree is clean', () => {
     assert.equal(isCleanWorktree(), true, 'target must stay pinned and clean');
 });
