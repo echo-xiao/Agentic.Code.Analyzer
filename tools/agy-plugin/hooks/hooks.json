@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node __PROJECT_ROOT__/.agents/plugins/analyzer-mcp-only/pretooluse.mjs",
+            "timeout": 10000
+          }
+        ]
+      }
+    ]
+  }
+}
