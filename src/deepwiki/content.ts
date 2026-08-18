@@ -3,9 +3,13 @@
 // fetch-outline.ts, so it doesn't bloat the outline JSON the router prompt is built from.
 // sections.ts is what reads them back.
 import * as path from 'path';
+import { DATA_DIR } from '../config.js';
 
-export const SECTIONS_DIR = path.resolve('data/deepwiki/sections');
+// Anchored to DATA_DIR (derived from __dirname), not to the current directory: an MCP
+// host spawns the server from wherever it happens to be, and a cwd-relative path
+// silently resolved to zero sections there.
+export const SECTIONS_DIR = path.join(DATA_DIR, 'deepwiki', 'sections');
 
 export function sectionContentPath(sectionId: string): string {
-    return `data/deepwiki/sections/${sectionId}.md`;
+    return path.join(SECTIONS_DIR, `${sectionId}.md`);
 }

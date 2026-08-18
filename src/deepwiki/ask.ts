@@ -2,9 +2,10 @@
 // rerun never re-asks. Control/ablation only.
 import * as fs from 'fs';
 import * as path from 'path';
+import { DATA_DIR } from '../config.js';
 import { callMcpTool } from './mcp.js';
 
-const CACHE_DIR = path.resolve('data/deepwiki/answers');
+const CACHE_DIR = path.join(DATA_DIR, 'deepwiki', 'answers');
 const REPO = 'RocketChat/Rocket.Chat';
 type PostFn = (question: string) => Promise<string>;
 

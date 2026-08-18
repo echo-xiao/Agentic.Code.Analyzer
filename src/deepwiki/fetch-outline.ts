@@ -14,6 +14,7 @@
 // The extraction below is a dedicated parser for this markdown shape.
 import * as fs from 'fs';
 import * as path from 'path';
+import { DATA_DIR } from '../config.js';
 import type { SourceRef, WikiOutline, WikiSection } from './types.js';
 import { callMcpTool } from './mcp.js';
 import { SECTIONS_DIR, sectionContentPath } from './content.js';
@@ -22,7 +23,7 @@ const REPO = 'RocketChat/Rocket.Chat';
 // The MCP API does not return a pinned commit hash (unlike the old HTML pages, which
 // showed "Last indexed: ... (e75965c0)"). Kept as the last known indexed commit.
 const COMMIT = 'e75965c0';
-const OUT = path.resolve('data/deepwiki/outline.json');
+const OUT = path.join(DATA_DIR, 'deepwiki', 'outline.json');
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 interface StructureEntry { id: string; title: string }
