@@ -14,6 +14,7 @@ import { runQuestion } from '../pipeline/run.js';
 import { GeminiClient } from '../pipeline/llm.js';
 import { createSerialQueue } from './queue.js';
 import { preflightMessage } from './preflight.js';
+import { formatToolResult } from './format.js';
 
 // Same throttle constant as the benchmark loop: one question's three requests, then a pause.
 const SPACING_MS = 6000;
@@ -52,10 +53,8 @@ server.registerTool(
             try {
                 // No deepwikiFn: the baseline is the benchmark report's comparison column.
                 const row = await runQuestion(qid, question, { llm: new GeminiClient(), sections });
-                const cited = row.citations.valid.length > 0
-                    ? `\n\n---\nCitations: ${row.citations.valid.join(', ')}`
-                    : '';
-                return { content: [{ type: 'text' as const, text: row.answer + cited }] };
+                const text = formatToolResult(row.answer, row.trace.reading.materials);
+                return { content: [{ type: 'text' as const, text }] };
             } catch (e) {
                 const text = `Failed to answer: ${e instanceof Error ? e.message : String(e)}`;
                 console.error(`[${qid}] ${text}`);
