@@ -6,7 +6,7 @@
 // A 6s pause between questions keeps a 3-call question inside the Gemini free-tier RPM.
 import '../eval/utils/load-env.js';   // side effect: .env -> process.env, before GeminiClient reads the key
 import * as fs from 'fs';
-import { readShards, readDispatch, loadGlobalIndex } from '../indexer/graph-store.js';
+import { loadIndex } from '../indexer/load.js';
 import { loadAllSections } from '../deepwiki/sections.js';
 import { runQuestion } from './run.js';
 import { renderReport, nextReportPath, type RunRow } from './report.js';
@@ -21,13 +21,12 @@ const limit = Number(arg('limit') ?? Infinity);
 const budget = arg('budget') !== undefined ? Number(arg('budget')) : undefined;
 // The graph shards are the index; `npm run build:graph` regenerates them. Loading is a read
 // of 71 files, so there is no cache to warm and no per-file mapping to re-parse.
-const shards = readShards();
-if (shards.length === 0) {
-    console.error('No graph shards found. Run: npx tsx -e "import(\'./src/indexer/build-graph.js\').then(m => m.buildGraph({ progress: true }))"');
+const shardCount = loadIndex();
+if (shardCount === 0) {
+    console.error('No graph shards found. Build the index with `npm run prewarm`.');
     process.exit(1);
 }
-loadGlobalIndex(shards, readDispatch());
-console.error(`index: ${shards.length} shards`);
+console.error(`index: ${shardCount} shards`);
 const sections = loadAllSections();
 const cases = loadTestcases(TESTCASES_PATH).flat.filter(c => c.id.includes(filter)).slice(0, limit);
 const rows: RunRow[] = [];

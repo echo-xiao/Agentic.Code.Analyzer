@@ -8,7 +8,7 @@ import '../eval/utils/load-env.js';   // side effect: .env -> process.env, befor
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
-import { readShards, readDispatch, loadGlobalIndex } from '../indexer/graph-store.js';
+import { loadIndex } from '../indexer/load.js';
 import { loadAllSections } from '../deepwiki/sections.js';
 import { runQuestion } from '../pipeline/run.js';
 import { GeminiClient } from '../pipeline/llm.js';
@@ -19,15 +19,12 @@ import { formatToolResult } from './format.js';
 // Same throttle constant as the benchmark loop: one question's three requests, then a pause.
 const SPACING_MS = 6000;
 
-const shards = readShards();
-if (shards.length > 0) {
-    loadGlobalIndex(shards, readDispatch());
-}
-const blocked = preflightMessage(shards.length, process.env.GEMINI_API_KEY);
+const shardCount = loadIndex();
+const blocked = preflightMessage(shardCount, process.env.GEMINI_API_KEY);
 // The index and the wiki sections are read once and stay resident (~50M, the same as one
 // benchmark run). Loading them per call would re-read every shard for every question.
 const sections = blocked ? [] : loadAllSections();
-console.error(blocked ? `mcp: not ready -- ${blocked}` : `mcp: ready, ${shards.length} shards, ${sections.length} sections`);
+console.error(blocked ? `mcp: not ready -- ${blocked}` : `mcp: ready, ${shardCount} shards, ${sections.length} sections`);
 
 const enqueue = createSerialQueue(SPACING_MS);
 let seq = 0;

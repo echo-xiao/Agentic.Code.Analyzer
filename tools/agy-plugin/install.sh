@@ -20,8 +20,8 @@ command -v agy >/dev/null || { echo "agy not found on PATH"; exit 1; }
 [ -x "$ROOT/node_modules/.bin/tsx" ] || { echo "run npm install first (node_modules/.bin/tsx missing)"; exit 1; }
 
 rm -rf "$DEST"
-mkdir -p "$DEST/hooks"
-for f in plugin.json hooks.json mcp_config.json pretooluse.mjs hooks/hooks.json; do
+mkdir -p "$DEST"
+for f in plugin.json hooks.json mcp_config.json pretooluse.mjs; do
     sed "s|__PROJECT_ROOT__|$ROOT|g" "$SRC/$f" > "$DEST/$f"
 done
 
