@@ -39,11 +39,18 @@ Full design: `docs/superpowers/specs/2026-08-04-rocketchat-qa-pipeline-design.md
   as baselines.
 - The pipeline itself (routing, skeleton expansion, path selection, generation, report) is being
   built on top of these — see the design doc.
+- `src/mcp/` — a stdio MCP server exposing one tool, `ask_codebase(question)`, over the same
+  `runQuestion()` the benchmark runs. Three Gemini requests per call, calls serialised with the
+  benchmark's own 6s spacing so a host emitting several tool calls at once cannot blow the
+  free-tier RPM. No DeepWiki baseline on this path and no run report written: `runs/` stays the
+  benchmark's, and a misbehaving answer is reproduced by rerunning the benchmark.
 
 ## Commands
 
 ```bash
 npm run prewarm   # build/refresh the ts-morph index cache (needs ../Rocket.Chat or $ROCKET_CHAT_SRC)
+npm run ask       # run the pipeline over the benchmark, writing a report to runs/
+npm run mcp       # serve the pipeline over stdio as an MCP tool (`ask_codebase`)
 npm run truth     # maintain benchmark ground truth (needs ANTHROPIC_API_KEY)
 npm test          # unit tests
 ```

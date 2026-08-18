@@ -7,15 +7,18 @@
     "prewarm": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/indexer/prewarm.ts",
     "truth": "npx tsx src/eval/truth.ts",
     "test": "tsx --test 'tests/**/*.test.ts'",
-    "ask": "npx tsx src/pipeline/run.ts"
+    "ask": "npx tsx src/pipeline/cli.ts",
+    "mcp": "npx tsx src/mcp/server.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
     "@google/generative-ai": "^0.21.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
     "cli-progress": "^3.12.0",
     "glob": "^13.0.6",
     "minimatch": "^9.0.9",
-    "ts-morph": "^21.0.1"
+    "ts-morph": "^21.0.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/cli-progress": "^3.11.6",
